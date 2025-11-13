@@ -2,11 +2,13 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Identidade Digital</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       background: #f2f2f2;
       font-family: sans-serif;
       overscroll-behavior: contain;
@@ -15,15 +17,11 @@
     }
 
     .container {
-      max-width: 420px;
-      margin: auto;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      height: 100%;
+      width: 100%;
+      background: white;
       position: relative;
     }
 
@@ -82,7 +80,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      position: relative;
+      margin-bottom: 60px; /* espaço para a barra fixa */
     }
 
     .rg-wrapper {
@@ -124,10 +122,6 @@
     .footer img.active {
       opacity: 1;
     }
-
-    .spacer {
-      height: 60px;
-    }
   </style>
 </head>
 <body>
@@ -151,8 +145,6 @@
         />
       </div>
     </div>
-
-    <div class="spacer"></div>
 
     <div class="footer">
       <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Documento" />
@@ -209,9 +201,16 @@
     }
 
     rgImg.onload = () => {
-      console.log("Imagem carregada:", rgImg.src);
-      setTimeout(ajustarImagem, 100);
+      ajustarImagem();
     };
+
+    window.addEventListener('load', () => {
+      setTimeout(ajustarImagem, 300);
+    });
+
+    window.addEventListener('resize', () => {
+      setTimeout(ajustarImagem, 300);
+    });
 
     let startX = 0;
     rgArea.addEventListener('touchstart', (e) => {
@@ -231,12 +230,6 @@
         trocarImagem(indexAtual);
       }
     }, { passive: true });
-
-    window.addEventListener('resize', ajustarImagem);
-    window.addEventListener('load', () => {
-      console.log("Página carregada");
-      setTimeout(ajustarImagem, 300);
-    });
   </script>
 </body>
 </html>
