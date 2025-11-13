@@ -48,19 +48,23 @@
 
 
 .Atualizadacentralizada {
-  position: fixed;       /* fica fixo no topo da tela */
-  top: 70px;             /* distância do topo */
-  left: 50%;             /* joga para o meio */
-  transform: translateX(-50%); /* centraliza pelo próprio tamanho */
-  
-  display: flex;         /* coloca dot e texto lado a lado */
-  align-items: center;   /* alinha verticalmente */
-  justify-content: center; /* garante centralização horizontal */
-  gap: 8px;              /* espaço entre o dot e o texto */
-  font-size: 13px;
+  display: flex;
+  justify-content: center;     /* centraliza horizontalmente */
+  align-items: center;         /* alinha verticalmente */
+  gap: 8px;                    /* espaço entre o ponto e o texto */
+  font-size: 14px;
   color: #333;
-  z-index: 1000;         /* fica acima do conteúdo */
+  margin-top: 12px;            /* distância do topo */
+  text-align: center;
 }
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #27ae60;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 
     .close {
       color: red;
@@ -228,6 +232,7 @@
   </script>
 </body>
 </html>
+
 
 
 
