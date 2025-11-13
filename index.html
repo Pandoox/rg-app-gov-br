@@ -87,22 +87,25 @@
       position: relative;
     }
 
+
     .rg-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
+      transform: rotate(90deg);
     }
 
-.rg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 👉 faz a imagem preencher tudo */
-  display: block;
-  transform: rotate(90deg);
-  will-change: transform;
-  backface-visibility: hidden;
-  transition: transform 0.3s ease;
-}
+    .rg-img {
+      width: auto;
+      height: auto;
+      max-width: 130%;
+      max-height: 120%;
+      object-fit: contain;
+      display: block;
+      will-change: transform;
+      backface-visibility: hidden;
+      transition: transform 0.3s ease;
+    }
 
 
     .footer {
@@ -211,6 +214,7 @@
   </script>
 </body>
 </html>
+
 
 
 
