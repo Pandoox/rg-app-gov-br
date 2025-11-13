@@ -8,6 +8,7 @@
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
       height: 100%;
       background: #f2f2f2;
       font-family: sans-serif;
@@ -17,12 +18,12 @@
     }
 
     .container {
+      position: relative;
       display: flex;
       flex-direction: column;
-      height: 100%;
       width: 100%;
-      background: white;
-      position: relative;
+      height: 100%;
+      background: #fff;
     }
 
     .top-bar {
@@ -32,6 +33,7 @@
       padding: 12px 16px;
       background: #e6f6ff;
       border-bottom: 1px solid #ddd;
+      flex-shrink: 0;
     }
 
     .top-left {
@@ -74,16 +76,16 @@
     }
 
     /* Área central */
-.rg-area {
-  height: calc(100vh - 120px);
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-
+    .rg-area {
+      flex-grow: 1;
+      min-height: 300px;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
 
     .rg-wrapper {
       display: flex;
@@ -91,16 +93,19 @@
       justify-content: center;
     }
 
-    /* Imagem sempre visível */
     .rg-img {
+      width: auto;
+      height: auto;
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       display: block;
+      transform: rotate(90deg);
+      will-change: transform;
+      backface-visibility: hidden;
       transition: transform 0.3s ease;
     }
 
-    /* Barra fixa no rodapé */
     .footer {
       display: flex;
       justify-content: space-around;
@@ -113,6 +118,7 @@
       left: 0;
       width: 100%;
       z-index: 10;
+      flex-shrink: 0;
     }
 
     .footer img {
@@ -179,28 +185,30 @@
       aplicarRotacao();
     }
 
-    rgImg.onload = () => {
-      aplicarRotacao();
-    };
+    rgImg.onload = aplicarRotacao;
 
     let startX = 0;
-    rgArea.addEventListener('touchstart', (e) => {
+    rgArea.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
     }, { passive: true });
 
-    rgArea.addEventListener('touchend', (e) => {
+    rgArea.addEventListener('touchend', e => {
       const endX = e.changedTouches[0].clientX;
       const deltaX = endX - startX;
 
       if (Math.abs(deltaX) > 50) {
-        if (deltaX < 0) {
-          indexAtual = (indexAtual + 1) % imagens.length;
-        } else {
-          indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
-        }
+        if (deltaX < 0) indexAtual = (indexAtual + 1) % imagens.length;
+        else indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
         trocarImagem(indexAtual);
       }
     }, { passive: true });
+
+    // 🧩 Debug: mostrar altura real no WebView
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        console.log("Altura rg-area:", rgArea.clientHeight + "px");
+      }, 800);
+    });
   </script>
 </body>
 </html>
