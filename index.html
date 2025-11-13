@@ -73,15 +73,24 @@
       border-top: 2px solid #333;
     }
 
+    /* Área central */
+.rg-area {
+  height: calc(100vh - 120px); /* altura total - topbar + footer */
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
     .rg-wrapper {
-      flex: 1;
-      background: black;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: auto;
     }
 
+    /* Imagem sempre visível */
     .rg-img {
       max-width: 100%;
       max-height: 100%;
@@ -90,6 +99,7 @@
       transition: transform 0.3s ease;
     }
 
+    /* Barra fixa no rodapé */
     .footer {
       display: flex;
       justify-content: space-around;
@@ -127,13 +137,15 @@
       <div class="menu"></div>
     </div>
 
-    <div class="rg-wrapper" id="rgWrapper">
-      <img
-        class="rg-img"
-        id="rgImg"
-        src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
-        alt="RG Digital"
-      />
+    <div class="rg-area" id="rgArea">
+      <div class="rg-wrapper">
+        <img
+          class="rg-img"
+          id="rgImg"
+          src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
+          alt="RG Digital"
+        />
+      </div>
     </div>
 
     <div class="footer">
@@ -153,7 +165,7 @@
     let indexAtual = 0;
     let rotacaoAtual = 90;
     const rgImg = document.getElementById('rgImg');
-    const rgWrapper = document.getElementById('rgWrapper');
+    const rgArea = document.getElementById('rgArea');
 
     function aplicarRotacao() {
       rgImg.style.transform = `rotate(${rotacaoAtual}deg)`;
@@ -171,11 +183,11 @@
     };
 
     let startX = 0;
-    rgWrapper.addEventListener('touchstart', (e) => {
+    rgArea.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
     }, { passive: true });
 
-    rgWrapper.addEventListener('touchend', (e) => {
+    rgArea.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
       const deltaX = endX - startX;
 
