@@ -11,9 +11,6 @@
       height: 100%;
       background: #f2f2f2;
       font-family: sans-serif;
-      overscroll-behavior: contain;
-      -webkit-user-select: none;
-      user-select: none;
     }
 
     .container {
@@ -22,7 +19,6 @@
       height: 100%;
       width: 100%;
       background: white;
-      position: relative;
     }
 
     .top-bar {
@@ -73,36 +69,28 @@
       border-top: 2px solid #333;
     }
 
-.rg-area {
-  flex: 1;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-}
+    .rg-area {
+      flex: 1;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
 
-.rg-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(90deg);
-  transform-origin: center center;
-}
+    .rg-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.rg-img {
-  height: auto;
-  width: auto;
-  max-height: 100vh;
-  max-width: 100vw;
-  object-fit: contain;
-  display: block;
-}
+    .rg-img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+    }
 
-
- 
-
-    /* Barra fixa no rodapé */
     .footer {
       display: flex;
       justify-content: space-around;
@@ -145,7 +133,7 @@
         <img
           class="rg-img"
           id="rgImg"
-          src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/7/77/Brasil_Flag.png"
           alt="RG Digital"
         />
       </div>
@@ -157,22 +145,33 @@
       <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" class="active" alt="Drone" />
       <img src="https://cdn-icons-png.flaticon.com/512/3524/3524636.png" alt="Opções" />
     </div>
-  </div>
 
   <script>
     const imagens = [
-      "https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png",
+      "https://upload.wikimedia.org/wikipedia/commons/7/77/Brasil_Flag.png",
       "https://rg-app-gov-br.vercel.app/static/base_RGAPP2.png",
       "https://rg-app-gov-br.vercel.app/static/base_RGAPP3.png"
     ];
+
     let indexAtual = 0;
+    let rotacaoAtual = 90;
     const rgImg = document.getElementById('rgImg');
     const rgArea = document.getElementById('rgArea');
+
+    function aplicarRotacao() {
+      rgImg.style.transform = `rotate(${rotacaoAtual}deg)`;
+    }
 
     function trocarImagem(novoIndex) {
       indexAtual = novoIndex;
       rgImg.src = imagens[indexAtual];
+      rotacaoAtual = 90;
+      aplicarRotacao();
     }
+
+    rgImg.onload = () => {
+      aplicarRotacao();
+    };
 
     let startX = 0;
     rgArea.addEventListener('touchstart', (e) => {
@@ -195,8 +194,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
