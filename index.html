@@ -85,7 +85,8 @@
 
     .rg-img {
       display: block;
-      max-width: none;
+      max-width: 100%;
+      max-height: 100%;
       height: auto;
     }
 
@@ -137,70 +138,52 @@
     </div>
   </div>
 
-<script>
-  const imagens = [
-    "/static/base_RGAPP1.png",   // frente
-    "/static/base_RGAPP2.png",   // verso
-    "/static/base_RGAPP3.png"    // qr
-  ];
-  let indexAtual = 0;
+  <script>
+    // ===== LISTA DE IMAGENS (frente, verso, qr) =====
+    const imagens = [
+      "/static/base_RGAPP1.png",   // frente
+      "/static/base_RGAPP2.png",   // verso
+      "/static/base_RGAPP3.png"    // qr
+    ];
+    let indexAtual = 0;
 
-  function ajustarImagem() {
-    const area = document.getElementById('rgArea');
-    const wrapper = document.getElementById('rgWrapper');
-    const img = document.getElementById('rgImg');
-
-    const areaW = area.clientWidth;
-    const areaH = area.clientHeight;
-
-    const naturalW = img.naturalWidth;
-    const naturalH = img.naturalHeight;
-
-    if (!naturalW || !naturalH) return;
-
-    const rotW = naturalH;
-    const rotH = naturalW;
-    const scale = Math.max(areaW / rotW, areaH / rotH);
-
-    wrapper.style.transform = `rotate(90deg) scale(${scale})`;
-    img.style.width = `${naturalW}px`;
-    img.style.height = 'auto';
-  }
-
-  const rgArea = document.getElementById('rgArea');
-  const rgImg = document.getElementById('rgImg');
-
-  function trocarImagem(novoIndex) {
-    indexAtual = novoIndex;
-    rgImg.src = imagens[indexAtual];
-  }
-
-  // Ajusta sempre que a imagem carregar
-  rgImg.onload = ajustarImagem;
-
-  let startX = 0;
-  rgArea.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  rgArea.addEventListener('touchend', (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const deltaX = endX - startX;
-
-    if (Math.abs(deltaX) > 50) {
-      if (deltaX < 0) {
-        // swipe esquerda → próxima
-        indexAtual = (indexAtual + 1) % imagens.length;
-      } else {
-        // swipe direita → anterior
-        indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
-      }
-      trocarImagem(indexAtual);
+    // ===== Ajuste simples sem rotação =====
+    function ajustarImagem() {
+      const img = document.getElementById('rgImg');
+      img.style.maxWidth = "100%";
+      img.style.maxHeight = "100%";
     }
-  }, { passive: true });
 
-  window.addEventListener('resize', ajustarImagem);
-</script>
+    const rgArea = document.getElementById('rgArea');
+    const rgImg = document.getElementById('rgImg');
 
+    function trocarImagem(novoIndex) {
+      indexAtual = novoIndex;
+      rgImg.src = imagens[indexAtual];
+    }
+
+    rgImg.onload = ajustarImagem;
+
+    let startX = 0;
+    rgArea.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    rgArea.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+
+      if (Math.abs(deltaX) > 50) {
+        if (deltaX < 0) {
+          indexAtual = (indexAtual + 1) % imagens.length;
+        } else {
+          indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
+        }
+        trocarImagem(indexAtual);
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', ajustarImagem);
+  </script>
 </body>
 </html>
