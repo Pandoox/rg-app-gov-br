@@ -73,6 +73,7 @@
       border-top: 2px solid #333;
     }
 
+    /* Área central */
     .rg-area {
       flex: 1;
       background: black;
@@ -84,20 +85,21 @@
     }
 
     .rg-wrapper {
-      transform: rotate(90deg);
-      width: 100vh;
-      height: 100vw;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    /* Imagem sempre visível */
     .rg-img {
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      transform: rotate(90deg); /* rotação aplicada direto na imagem */
       display: block;
     }
 
+    /* Barra fixa no rodapé */
     .footer {
       display: flex;
       justify-content: space-around;
@@ -136,11 +138,11 @@
     </div>
 
     <div class="rg-area" id="rgArea">
-      <div class="rg-wrapper" id="rgWrapper">
+      <div class="rg-wrapper">
         <img
           class="rg-img"
           id="rgImg"
-            src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/7/77/Brasil_Flag.png"
           alt="RG Digital"
         />
       </div>
@@ -155,18 +157,12 @@
   </div>
 
   <script>
-    window.onerror = function (msg, src, line, col, err) {
-      alert("Erro JS: " + msg + " (" + line + ")");
-      console.error("Erro JS:", msg, "em", src, "linha", line);
-    };
-
     const imagens = [
-      "https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png",
+      "https://upload.wikimedia.org/wikipedia/commons/7/77/Brasil_Flag.png",
       "https://rg-app-gov-br.vercel.app/static/base_RGAPP2.png",
       "https://rg-app-gov-br.vercel.app/static/base_RGAPP3.png"
     ];
     let indexAtual = 0;
-
     const rgImg = document.getElementById('rgImg');
     const rgArea = document.getElementById('rgArea');
 
@@ -196,7 +192,3 @@
   </script>
 </body>
 </html>
-
-
-
-
