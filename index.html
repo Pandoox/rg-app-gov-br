@@ -68,7 +68,7 @@
 
 
     .close {
-      color: red;
+      color: #1351B4;
       font-size: 20px;
       font-weight: bold;
       cursor: pointer;
@@ -175,7 +175,8 @@
 
   <div class="container">
     <div class="top-bar">
-      <div class="close">×</div>
+     <div class="close">Fechar</div>
+
 
       <div class="menu"></div>
     </div>
@@ -195,13 +196,12 @@
       </div>
     </div>
 
-    <div class="footer">
-      <img src="static/usuario.png" class="active" alt="Drone" />
-      <img src="static/google-docs.png" class="active" alt="Drone" />
-      <img src="static/camera.png" class="active" alt="Drone" />
+<div class="footer">
+  <img id="btnRG1" src="static/usuario.png" class="active" alt="RG 1" />
+  <img id="btnRG2" src="static/id-card_88591.png" class="active" alt="RG 2" />
+  <img id="btnRG3" src="static/qr-code.png" class="active" alt="RG 3" />
+</div>
 
-      <img src="static/setting.png" class="active" alt="Drone" />
-    </div>
   </div>
 
   <script>
@@ -294,6 +294,17 @@ document.addEventListener('touchend', e => {
 
 document.addEventListener('gesturestart', function (e) {
   e.preventDefault();
+});
+document.getElementById('btnRG1').addEventListener('click', () => {
+  trocarImagem(0); // RG 1
+});
+
+document.getElementById('btnRG2').addEventListener('click', () => {
+  trocarImagem(1); // RG 2
+});
+
+document.getElementById('btnRG3').addEventListener('click', () => {
+  trocarImagem(2); // RG 3
 });
 
 
