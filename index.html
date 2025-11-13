@@ -34,6 +34,7 @@
       background: #e6f6ff;
       border-bottom: 1px solid #ddd;
       flex-shrink: 0;
+      
     }
 
     .top-left {
@@ -75,33 +76,39 @@
       border-top: 2px solid #333;
     }
 
-.rg-area {
-  flex-grow: 1;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  /* remova min-height */
-}
+    /* Área central */
+    .rg-area {
+      flex-grow: 1;
+      min-height: 700px;
+      background: rgb(255, 255, 255);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-.rg-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0; /* remova o -100px */
-}
+    .rg-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -100px;
+      
+    }
 
-.rg-img {
-  max-width: 100%;
-  max-height: calc(100vh - 120px); 
-  /* 100vh menos altura do topo (~60px) e do footer (~60px) */
-  object-fit: contain;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
+    .rg-img {
+      width: auto;
+      height: auto;
+      max-width: 150%;
+      max-height: 150%;
+      object-fit: contain;
+      display: block;
+      transform: rotate(90deg);
+      will-change: transform;
+      backface-visibility: hidden;
+      transition: transform 0.3s ease;
+      
+    }
 
     .footer {
       display: flex;
@@ -111,11 +118,12 @@
       background: #fff;
       border-top: 1px solid #ddd;
       position: fixed;
-      bottom: 0;
+      bottom: 15px;
       left: 0;
       width: 100%;
       z-index: 10;
       flex-shrink: 0;
+      
     }
 
     .footer img {
@@ -209,6 +217,3 @@
   </script>
 </body>
 </html>
-
-
-
