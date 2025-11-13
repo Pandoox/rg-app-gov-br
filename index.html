@@ -54,7 +54,7 @@
   gap: 8px;                    /* espaço entre o ponto e o texto */
   font-size: 14px;
   color: #333;
-  margin-top: -5px;              /* distância do topo */
+  margin-top: -5px;            /* distância do topo */
   text-align: center;
 }
 .dot {
@@ -160,10 +160,11 @@
 
       <div class="menu"></div>
     </div>
-      <div class="Atualizadacentralizada">
-        <div class="dot"></div>
-        <span>Atualizada em, DD/MM/AAAA às HH:MM</span>
-      </div>
+<div class="Atualizadacentralizada">
+  <div class="dot"></div>
+  <span id="dataAtualizacao">Atualizada em, DD/MM/AAAA às HH:MM</span>
+</div>
+
     <div class="rg-area" id="rgArea">
       <div class="rg-wrapper">
         <img
@@ -229,6 +230,23 @@
         console.log("Altura rg-area:", rgArea.clientHeight + "px");
       }, 800);
     });
+
+      function atualizarDataHora() {
+    const agora = new Date();
+
+    const dia = String(agora.getDate()).padStart(2, '0');
+    const mes = String(agora.getMonth() + 1).padStart(2, '0');
+    const ano = agora.getFullYear();
+
+    const horas = String(agora.getHours()).padStart(2, '0');
+    const minutos = String(agora.getMinutes()).padStart(2, '0');
+
+    const texto = `Atualizada em: ${dia}/${mes}/${ano} às ${horas}:${minutos}`;
+    document.getElementById('dataAtualizacao').textContent = texto;
+  }
+
+  // Atualiza ao carregar
+  window.addEventListener('load', atualizarDataHora);
   </script>
 </body>
 </html>
