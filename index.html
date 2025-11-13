@@ -2,7 +2,10 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
   <title>Identidade Digital</title>
   <style>
     html, body {
@@ -73,31 +76,34 @@
       border-top: 2px solid #333;
     }
 
+    /* Área central ocupa tudo acima da barra fixa */
     .rg-area {
       flex: 1;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      margin-bottom: 60px; /* espaço para a barra fixa */
-    }
-
-    .rg-wrapper {
       position: relative;
+      background: black;
+      overflow: hidden;
+      margin-bottom: 60px; /* reserva espaço para a footer fixa */
+    }
+
+    /* Wrapper ocupa 100% e centraliza conteúdo */
+    .rg-wrapper {
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      transform-origin: center center;
-      transition: transform 0.3s ease;
     }
 
+    /* Imagem sempre visível, ajustada ao espaço e rotacionada */
     .rg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: rotate(90deg);
       display: block;
-      max-width: none;
-      height: auto;
     }
 
+    /* Barra fixa no rodapé */
     .footer {
       display: flex;
       justify-content: space-around;
@@ -122,6 +128,24 @@
     .footer img.active {
       opacity: 1;
     }
+
+    /* Texto de erro sobre a área, caso a imagem falhe */
+    .img-error {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: rgba(0,0,0,0.4);
+      font-size: 14px;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .img-error.show {
+      display: flex;
+    }
   </style>
 </head>
 <body>
@@ -143,6 +167,9 @@
           src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
           alt="RG Digital"
         />
+        <div class="img-error" id="imgError">
+          Não foi possível carregar a imagem.
+        </div>
       </div>
     </div>
 
@@ -155,6 +182,7 @@
   </div>
 
   <script>
+    // Erros JS visíveis
     window.onerror = function (msg, src, line, col, err) {
       alert("Erro JS: " + msg + " (" + line + ")");
       console.error("Erro JS:", msg, "em", src, "linha", line);
@@ -165,53 +193,13 @@
       "https://rg-app-gov-br.vercel.app/static/base_RGAPP2.png",
       "https://rg-app-gov-br.vercel.app/static/base_RGAPP3.png"
     ];
+
     let indexAtual = 0;
-
-    function ajustarImagem() {
-      const area = document.getElementById('rgArea');
-      const wrapper = document.getElementById('rgWrapper');
-      const img = document.getElementById('rgImg');
-
-      const areaW = area.clientWidth;
-      const areaH = area.clientHeight;
-
-      const naturalW = img.naturalWidth;
-      const naturalH = img.naturalHeight;
-
-      if (!naturalW || !naturalH) {
-        console.warn("Imagem ainda não carregada completamente");
-        return;
-      }
-
-      const rotW = naturalH;
-      const rotH = naturalW;
-      const scale = Math.min(areaW / rotW, areaH / rotH);
-
-      wrapper.style.transform = `rotate(90deg) scale(${scale})`;
-      img.style.width = `${naturalW}px`;
-      img.style.height = 'auto';
-    }
-
-    const rgArea = document.getElementById('rgArea');
     const rgImg = document.getElementById('rgImg');
+    const imgError = document.getElementById('imgError');
+    const rgArea = document.getElementById('rgArea');
 
-    function trocarImagem(novoIndex) {
-      indexAtual = novoIndex;
-      rgImg.src = imagens[indexAtual];
-    }
-
-    rgImg.onload = () => {
-      ajustarImagem();
-    };
-
-    window.addEventListener('load', () => {
-      setTimeout(ajustarImagem, 300);
-    });
-
-    window.addEventListener('resize', () => {
-      setTimeout(ajustarImagem, 300);
-    });
-
+    // Troca de imagem por swipe
     let startX = 0;
     rgArea.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
@@ -230,6 +218,23 @@
         trocarImagem(indexAtual);
       }
     }, { passive: true });
+
+    function trocarImagem(novoIndex) {
+      indexAtual = novoIndex;
+      imgError.classList.remove('show');
+      rgImg.src = imagens[indexAtual];
+    }
+
+    // Fallback: se a imagem falhar, mostrar mensagem
+    rgImg.addEventListener('error', () => {
+      imgError.classList.add('show');
+      console.error('Falha ao carregar imagem:', rgImg.src);
+    });
+
+    // Quando carregar, garante visibilidade
+    rgImg.addEventListener('load', () => {
+      imgError.classList.remove('show');
+    });
   </script>
 </body>
 </html>
