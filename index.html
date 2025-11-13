@@ -5,133 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Identidade Digital</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #f2f2f2;
-      font-family: sans-serif;
-      overscroll-behavior: contain;
-      -webkit-user-select: none;
-      user-select: none;
-    }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* preto como fundo padrão */
+    font-family: sans-serif;
+    overscroll-behavior: contain;
+    -webkit-user-select: none;
+    user-select: none;
+  }
 
-    .container {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-    }
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: relative;
+  }
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: #e6f6ff;
-      border-bottom: 1px solid #ddd;
-      flex-shrink: 0;
-    }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #e6f6ff;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+  }
 
-    .top-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: #333;
-    }
+  .top-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #333;
+  }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: #27ae60;
-      border-radius: 50%;
-    }
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: #27ae60;
+    border-radius: 50%;
+  }
 
-    .close {
-      color: red;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  .close {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-    .menu {
-      width: 20px;
-      height: 14px;
-      border-top: 2px solid #333;
-      border-bottom: 2px solid #333;
-      position: relative;
-    }
+  .menu {
+    width: 20px;
+    height: 14px;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    position: relative;
+  }
 
-    .menu::after {
-      content: "";
-      position: absolute;
-      top: 5px;
-      left: 0;
-      width: 20px;
-      border-top: 2px solid #333;
-    }
+  .menu::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 20px;
+    border-top: 2px solid #333;
+  }
 
-    /* Área central */
-    .rg-area {
-      flex-grow: 1;
-      min-height: 300px;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+  /* 🔧 Área central: ocupa tudo e remove o branco embaixo */
+  .rg-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    overflow: hidden;
+    height: 100%;
+  }
 
-    .rg-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  .rg-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .rg-img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
-      transform: rotate(90deg);
-      will-change: transform;
-      backface-visibility: hidden;
-      transition: transform 0.3s ease;
-    }
+  .rg-img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    transform: rotate(90deg) scale(1.1);
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+  }
 
-    .footer {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 12px;
-      background: #fff;
-      border-top: 1px solid #ddd;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-      flex-shrink: 0;
-    }
+  /* 🔹 Rodapé fixo */
+  .footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
 
-    .footer img {
-      width: 28px;
-      height: 28px;
-      opacity: 0.6;
-      transition: opacity 0.3s;
-    }
+  .footer img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
 
-    .footer img.active {
-      opacity: 1;
-    }
-  </style>
+  .footer img.active {
+    opacity: 1;
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
@@ -212,3 +212,4 @@
   </script>
 </body>
 </html>
+
