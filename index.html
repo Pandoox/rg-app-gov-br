@@ -73,23 +73,15 @@
       border-top: 2px solid #333;
     }
 
-    /* Área central */
-.rg-area {
-
-  
-
-
-  overflow: auto; /* permite rolagem se necessário */
-}
-
-
     .rg-wrapper {
+      flex: 1;
+      background: black;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: auto;
     }
 
-    /* Imagem sempre visível */
     .rg-img {
       max-width: 100%;
       max-height: 100%;
@@ -98,7 +90,6 @@
       transition: transform 0.3s ease;
     }
 
-    /* Barra fixa no rodapé */
     .footer {
       display: flex;
       justify-content: space-around;
@@ -136,15 +127,13 @@
       <div class="menu"></div>
     </div>
 
-    <div class="rg-area" id="rgArea">
-      <div class="rg-wrapper">
-        <img
-          class="rg-img"
-          id="rgImg"
-          src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
-          alt="RG Digital"
-        />
-      </div>
+    <div class="rg-wrapper" id="rgWrapper">
+      <img
+        class="rg-img"
+        id="rgImg"
+        src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
+        alt="RG Digital"
+      />
     </div>
 
     <div class="footer">
@@ -164,7 +153,7 @@
     let indexAtual = 0;
     let rotacaoAtual = 90;
     const rgImg = document.getElementById('rgImg');
-    const rgArea = document.getElementById('rgArea');
+    const rgWrapper = document.getElementById('rgWrapper');
 
     function aplicarRotacao() {
       rgImg.style.transform = `rotate(${rotacaoAtual}deg)`;
@@ -182,11 +171,11 @@
     };
 
     let startX = 0;
-    rgArea.addEventListener('touchstart', (e) => {
+    rgWrapper.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
     }, { passive: true });
 
-    rgArea.addEventListener('touchend', (e) => {
+    rgWrapper.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
       const deltaX = endX - startX;
 
@@ -202,8 +191,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
