@@ -95,17 +95,28 @@
       transform: rotate(90deg);
     }
 
-    .rg-img {
-      width: auto;
-      height: auto;
-      max-width: 130%;
-      max-height: 120%;
-      object-fit: contain;
-      display: block;
-      will-change: transform;
-      backface-visibility: hidden;
-      transition: transform 0.3s ease;
-    }
+.rg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.rg-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  width: 100vh; /* usa altura da tela como largura após rotação */
+  height: 100vw; /* usa largura da tela como altura após rotação */
+  object-fit: cover; /* preenche toda a tela */
+}
 
 
     .footer {
@@ -214,6 +225,7 @@
   </script>
 </body>
 </html>
+
 
 
 
