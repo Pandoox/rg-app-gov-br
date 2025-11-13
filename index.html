@@ -5,60 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Identidade Digital</title>
   <style>
-    html,body{
-      margin:0; padding:0; width:100%; height:100%; background:#f2f2f2; font-family:sans-serif;
-      -webkit-user-select:none; user-select:none; overscroll-behavior:contain;
-    }
+  html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
+  font-family: sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: contain;
+}
 
-    .container{
-      position:relative; display:flex; flex-direction:column; width:100%; height:100%; background:#fff;
-    }
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
 
-    .top-bar{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:12px 16px; background:#e6f6ff; border-bottom:1px solid #ddd; flex-shrink:0;
-    }
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #e6f6ff;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
+}
 
-    .top-left{ display:flex; align-items:center; gap:8px; font-size:13px; color:#333; }
-    .dot{ width:10px; height:10px; background:#27ae60; border-radius:50%; }
-    .close{ color:red; font-size:20px; font-weight:bold; cursor:pointer; }
-    .menu{ width:20px; height:14px; border-top:2px solid #333; border-bottom:2px solid #333; position:relative; }
-    .menu::after{ content:""; position:absolute; top:5px; left:0; width:20px; border-top:2px solid #333; }
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #333;
+}
 
-    /* central area: flexible and guaranteed to have real height */
-    .rg-area{
-      flex:1 1 auto; /* grow, shrink, basis */
-      min-height:240px; /* safe minimum */
-      position:relative;
-      background:#000; /* background during load */
-      display:flex; align-items:center; justify-content:center; overflow:hidden;
-    }
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #27ae60;
+  border-radius: 50%;
+}
 
-    /* wrapper just centers; image positioned absolutely so we can control sizing precisely */
-    .rg-wrapper{ position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.close {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
+.menu {
+  width: 20px;
+  height: 14px;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  position: relative;
+}
+
+.menu::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 20px;
+  border-top: 2px solid #333;
+}
+
+/* Área central flexível */
+.rg-area {
+  flex: 1 1 auto;
+  position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Wrapper centralizador */
+.rg-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagem do RG rotacionada e centralizada */
 .rg-img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
   transform-origin: center center;
-  width: 100vh;         /* altura da tela vira largura da imagem rotacionada */
+  width: 100vh;           /* usa a altura da tela como largura da imagem */
   height: auto;
-  max-width: none;      /* remove limite que estava travando o tamanho */
-  max-height: none;
+  max-width: 120vh;       /* permite que a imagem cresça mais se necessário */
+  max-height: 100vw;      /* respeita a largura da tela após rotação */
   object-fit: contain;
   display: block;
 }
 
+/* Rodapé fixo */
+.footer {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  z-index: 10;
+}
 
-    .footer{
-      position:fixed; bottom:30px; left:0; width:100%;
-      display:flex; justify-content:space-around; align-items:center;
-      padding:12px; background:#fff; border-top:1px solid #ddd; z-index:10;
-    }
-    .footer img{ width:28px; height:28px; opacity:0.6; transition:opacity .3s; }
-    .footer img.active{ opacity:1; }
+.footer img {
+  width: 28px;
+  height: 28px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.footer img.active {
+  opacity: 1;
+}
+
   </style>
 </head>
 <body>
@@ -177,4 +255,5 @@
   </script>
 </body>
 </html>
+
 
