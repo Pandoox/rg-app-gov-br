@@ -76,16 +76,16 @@
       border-top: 2px solid #333;
     }
 
-    .rg-area {
-      flex-grow: 1;
-      min-height: 900px;
-      background: rgb(255, 255, 255);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+.rg-area {
+  flex-grow: 1;                /* ocupa todo espaço disponível */
+  height: 100%;                /* ocupa a altura restante do container */
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
 
 
     .rg-wrapper {
@@ -216,6 +216,7 @@
   </script>
 </body>
 </html>
+
 
 
 
