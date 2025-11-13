@@ -76,17 +76,17 @@
       border-top: 2px solid #333;
     }
 
-    /* Área central */
-    .rg-area {
-      flex-grow: 1;
-      min-height: 900px;
-      background: rgb(255, 255, 255);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+.rg-area {
+  flex-grow: 1;
+  height: calc(100vh - 120px); /* ocupa toda a tela menos topo e rodapé */
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
 
     .rg-wrapper {
       display: flex;
@@ -216,5 +216,6 @@
   </script>
 </body>
 </html>
+
 
 
