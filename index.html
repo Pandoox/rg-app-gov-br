@@ -137,82 +137,70 @@
     </div>
   </div>
 
-  <script>
-    // ===== LISTA DE IMAGENS (frente, verso, qr) =====
-    const imagens = [
-      "/static/base_RGAPP1.png",   // frente
-      "/static/base_RGAPP2.png",   // verso
-      "/static/base_RGAPP3.png"    // qr
-    ];
-    let indexAtual = 0;
+<script>
+  const imagens = [
+    "/static/base_RGAPP1.png",   // frente
+    "/static/base_RGAPP2.png",   // verso
+    "/static/base_RGAPP3.png"    // qr
+  ];
+  let indexAtual = 0;
 
-    // ===== SUA LÓGICA ORIGINAL DE AJUSTE (mantida) =====
-    function ajustarImagem() {
-      const area = document.getElementById('rgArea');
-      const wrapper = document.getElementById('rgWrapper');
-      const img = document.getElementById('rgImg');
+  function ajustarImagem() {
+    const area = document.getElementById('rgArea');
+    const wrapper = document.getElementById('rgWrapper');
+    const img = document.getElementById('rgImg');
 
-      const areaW = area.clientWidth;
-      const areaH = area.clientHeight;
+    const areaW = area.clientWidth;
+    const areaH = area.clientHeight;
 
-      const naturalW = img.naturalWidth;
-      const naturalH = img.naturalHeight;
+    const naturalW = img.naturalWidth;
+    const naturalH = img.naturalHeight;
 
-      if (!naturalW || !naturalH) return;
+    if (!naturalW || !naturalH) return;
 
-      // Após rotação, largura vira altura e vice-versa
-      const rotW = naturalH;
-      const rotH = naturalW;
+    const rotW = naturalH;
+    const rotH = naturalW;
+    const scale = Math.max(areaW / rotW, areaH / rotH);
 
-      const scale = Math.max(areaW / rotW, areaH / rotH);
+    wrapper.style.transform = `rotate(90deg) scale(${scale})`;
+    img.style.width = `${naturalW}px`;
+    img.style.height = 'auto';
+  }
 
-      wrapper.style.transform = `rotate(90deg) scale(${scale})`;
-      img.style.width = `${naturalW}px`;
-      img.style.height = 'auto';
-    }
+  const rgArea = document.getElementById('rgArea');
+  const rgImg = document.getElementById('rgImg');
 
-    // ===== SWIPE PARA TROCAR DE IMAGEM (apenas dentro da área preta) =====
-    const rgArea = document.getElementById('rgArea');
-    const rgImg = document.getElementById('rgImg');
-
-    function trocarImagem(novoIndex) {
-      indexAtual = novoIndex;
-      rgImg.src = imagens[indexAtual];
-      if (rgImg.complete) {
-        ajustarImagem();
-      } else {
-        rgImg.onload = ajustarImagem;
-      }
-    }
-
+  function trocarImagem(novoIndex) {
+    indexAtual = novoIndex;
     rgImg.src = imagens[indexAtual];
+  }
 
-    let startX = 0;
-    rgArea.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
+  // Ajusta sempre que a imagem carregar
+  rgImg.onload = ajustarImagem;
 
-    rgArea.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const deltaX = endX - startX;
+  let startX = 0;
+  rgArea.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
 
-      if (Math.abs(deltaX) > 50) {
-        if (deltaX < 0 && indexAtual < imagens.length - 1) {
-          trocarImagem(indexAtual + 1);
-        } else if (deltaX > 0 && indexAtual > 0) {
-          trocarImagem(indexAtual - 1);
-        }
+  rgArea.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = endX - startX;
+
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        // swipe esquerda → próxima
+        indexAtual = (indexAtual + 1) % imagens.length;
+      } else {
+        // swipe direita → anterior
+        indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
       }
-    }, { passive: true });
-
-    // Mantém seu comportamento original
-    const imgEl = document.getElementById('rgImg');
-    if (imgEl.complete) {
-      ajustarImagem();
-    } else {
-      imgEl.onload = ajustarImagem;
+      trocarImagem(indexAtual);
     }
-    window.addEventListener('resize', ajustarImagem);
-  </script>
+  }, { passive: true });
+
+  window.addEventListener('resize', ajustarImagem);
+</script>
+
 </body>
 </html>
