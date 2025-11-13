@@ -37,15 +37,20 @@
     /* wrapper just centers; image positioned absolutely so we can control sizing precisely */
     .rg-wrapper{ position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
 
-    .rg-img{
-      position:absolute;
-      top:50%; left:50%;
-      transform-origin:center center;
-      /* we'll set transform (translate + rotate) and width/height from JS */
-      will-change: transform;
-      backface-visibility:hidden;
-      display:block;
-    }
+.rg-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  width: 100vh;         /* altura da tela vira largura da imagem rotacionada */
+  height: auto;
+  max-width: none;      /* remove limite que estava travando o tamanho */
+  max-height: none;
+  object-fit: contain;
+  display: block;
+}
+
 
     .footer{
       position:fixed; bottom:30px; left:0; width:100%;
@@ -172,3 +177,4 @@
   </script>
 </body>
 </html>
+
