@@ -46,12 +46,21 @@
       color: #333;
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: #27ae60;
-      border-radius: 50%;
-    }
+
+.Atualizadacentralizada {
+  position: fixed;       /* fica fixo no topo da tela */
+  top: 70px;             /* distância do topo */
+  left: 50%;             /* joga para o meio */
+  transform: translateX(-50%); /* centraliza pelo próprio tamanho */
+  
+  display: flex;         /* coloca dot e texto lado a lado */
+  align-items: center;   /* alinha verticalmente */
+  justify-content: center; /* garante centralização horizontal */
+  gap: 8px;              /* espaço entre o dot e o texto */
+  font-size: 13px;
+  color: #333;
+  z-index: 1000;         /* fica acima do conteúdo */
+}
 
     .close {
       color: red;
@@ -144,13 +153,13 @@
   <div class="container">
     <div class="top-bar">
       <div class="close">×</div>
-      <div class="top-left">
+
+      <div class="menu"></div>
+    </div>
+      <div class="Atualizadacentralizada">
         <div class="dot"></div>
         <span>Atualizada em, DD/MM/AAAA às HH:MM</span>
       </div>
-      <div class="menu"></div>
-    </div>
-
     <div class="rg-area" id="rgArea">
       <div class="rg-wrapper">
         <img
@@ -219,6 +228,7 @@
   </script>
 </body>
 </html>
+
 
 
 
