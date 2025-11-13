@@ -9,6 +9,9 @@
       margin: 0;
       background: #f2f2f2;
       font-family: sans-serif;
+      overscroll-behavior: contain;
+      -webkit-user-select: none;
+      user-select: none;
     }
     .container {
       max-width: 420px;
@@ -81,12 +84,12 @@
       align-items: center;
       justify-content: center;
       transform-origin: center center;
+      transition: transform 0.3s ease;
     }
 
     .rg-img {
       display: block;
-      max-width: 100%;
-      max-height: 100%;
+      max-width: none;
       height: auto;
     }
 
@@ -102,6 +105,7 @@
       width: 28px;
       height: 28px;
       opacity: 0.6;
+      transition: opacity 0.3s;
     }
     .footer img.active {
       opacity: 1;
@@ -124,7 +128,7 @@
         <img
           class="rg-img"
           id="rgImg"
-          src="/static/base_RGAPP1.png"
+          src="https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png"
           alt="RG Digital"
         />
       </div>
@@ -139,19 +143,42 @@
   </div>
 
   <script>
-    // ===== LISTA DE IMAGENS (frente, verso, qr) =====
+    // Mostra erros JS no WebView
+    window.onerror = function (msg, src, line, col, err) {
+      alert("Erro JS: " + msg + " (" + line + ")");
+      console.error("Erro JS:", msg, "em", src, "linha", line);
+    };
+
     const imagens = [
-      "/static/base_RGAPP1.png",   // frente
-      "/static/base_RGAPP2.png",   // verso
-      "/static/base_RGAPP3.png"    // qr
+      "https://rg-app-gov-br.vercel.app/static/base_RGAPP1.png",
+      "https://rg-app-gov-br.vercel.app/static/base_RGAPP2.png",
+      "https://rg-app-gov-br.vercel.app/static/base_RGAPP3.png"
     ];
     let indexAtual = 0;
 
-    // ===== Ajuste simples sem rotação =====
     function ajustarImagem() {
+      const area = document.getElementById('rgArea');
+      const wrapper = document.getElementById('rgWrapper');
       const img = document.getElementById('rgImg');
-      img.style.maxWidth = "100%";
-      img.style.maxHeight = "100%";
+
+      const areaW = area.clientWidth;
+      const areaH = area.clientHeight;
+
+      const naturalW = img.naturalWidth;
+      const naturalH = img.naturalHeight;
+
+      if (!naturalW || !naturalH) {
+        console.warn("Imagem ainda não carregada completamente");
+        return;
+      }
+
+      const rotW = naturalH;
+      const rotH = naturalW;
+      const scale = Math.min(areaW / rotW, areaH / rotH);
+
+      wrapper.style.transform = `rotate(90deg) scale(${scale})`;
+      img.style.width = `${naturalW}px`;
+      img.style.height = 'auto';
     }
 
     const rgArea = document.getElementById('rgArea');
@@ -162,7 +189,11 @@
       rgImg.src = imagens[indexAtual];
     }
 
-    rgImg.onload = ajustarImagem;
+    // Garante ajuste após o carregamento completo
+    rgImg.onload = () => {
+      console.log("Imagem carregada:", rgImg.src);
+      setTimeout(ajustarImagem, 100);
+    };
 
     let startX = 0;
     rgArea.addEventListener('touchstart', (e) => {
@@ -184,6 +215,12 @@
     }, { passive: true });
 
     window.addEventListener('resize', ajustarImagem);
+
+    // Ajuste inicial com delay
+    window.addEventListener('load', () => {
+      console.log("Página carregada");
+      setTimeout(ajustarImagem, 300);
+    });
   </script>
 </body>
 </html>
