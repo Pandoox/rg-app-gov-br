@@ -27,6 +27,22 @@
       background-position: center;
     }
 
+    /* Loader */
+    #loader {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e6f6ff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #333;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      display: none;
+    }
+
     .overlay {
       position: fixed;
       bottom: 60px;
@@ -91,6 +107,9 @@
   </style>
 </head>
 <body>
+  <!-- Loader -->
+  <div id="loader">🔄 Atualizando...</div>
+
   <div class="overlay">
     <div class="logo">
       <span>g</span><span>o</span><span>v</span><span>.</span><span>b</span><span>r</span>
@@ -99,9 +118,32 @@
     <div class="desc">Clique para acessar sua conta gov.br</div>
     <div class="qr">📷 Ler QR Code</div>
   </div>
+
+  <script>
+    let startY = 0;
+    let isRefreshing = false;
+
+    document.addEventListener('touchstart', e => {
+      if (window.scrollY === 0) {
+        startY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      const endY = e.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+
+      // Se arrastar mais de 80px para baixo no topo da página
+      if (deltaY > 80 && !isRefreshing && window.scrollY === 0) {
+        isRefreshing = true;
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
+
+        setTimeout(() => {
+          location.reload(); // recarrega a página
+        }, 1000); // tempo de exibição do loader
+      }
+    }, { passive: true });
+  </script>
 </body>
 </html>
-
-
-
-
