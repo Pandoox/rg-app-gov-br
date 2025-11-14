@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>gov.br Login</title>
 
-  <!-- Fonte Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="static/govbr.png" type="image/png" />
 
@@ -19,17 +18,17 @@
       overscroll-behavior: contain;
       -webkit-user-select: none;
       user-select: none;
-    }
-
-    body {
-      background: url("https://rg-app-gov-br.vercel.app/static/Captura%20de%20tela%202025-11-13%20232843.png") no-repeat center center;
-      background-size: cover;
-      background-position: center;
       position: relative;
     }
 
+    body {
+      background: url("static/Captura de tela 2025-11-13 232843.png") no-repeat center center;
+      background-size: cover;
+      background-position: center;
+    }
+
     .overlay {
-      position: absolute;
+      position: fixed;
       bottom: 60px;
       left: 50%;
       transform: translateX(-50%);
@@ -102,4 +101,3 @@
   </div>
 </body>
 </html>
-
