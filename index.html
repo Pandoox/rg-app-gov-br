@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" href="static/govbr.png" type="image/png" />
 
-  <title>Identidade Digital</title>
+
+  <title>RG Digital</title>
   <style>
     html, body {
       margin: 0;
@@ -104,6 +106,8 @@
       justify-content: center;
       overflow: hidden;
       position: relative;
+      border-bottom: none;
+
     }
 
     .rg-wrapper {
@@ -111,6 +115,8 @@
       align-items: center;
       justify-content: center;
       margin-top: -100px;
+      border-bottom: none;
+
       
     }
 
@@ -126,6 +132,8 @@
       backface-visibility: hidden;
       transition: transform 0.3s ease;
       padding-bottom: 15;
+      border-bottom: none;
+
       
     }
 
@@ -168,6 +176,26 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 999;
 }
+.menu-pontos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ponto {
+  width: 4px;
+  height: 4px;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+
 
   </style>
 </head>
@@ -181,7 +209,13 @@
      <div class="close">Fechar</div>
 
 
-      <div class="menu"></div>
+      <div class="menu-pontos" title="Mais opções">
+  <span class="ponto"></span>
+  <span class="ponto"></span>
+  <span class="ponto"></span>
+</div>
+
+
     </div>
 <div class="Atualizadacentralizada">
   <div class="dot"></div>
@@ -314,7 +348,6 @@ document.getElementById('btnRG3').addEventListener('click', () => {
   </script>
 </body>
 </html>
-
 
 
 
