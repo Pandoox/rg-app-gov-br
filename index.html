@@ -42,19 +42,25 @@
 
 
 .btn {
-  display: block;
-  width: 100%;
+  display: inline-block;        /* ocupa só o espaço do conteúdo */
+  padding: 14px 100px;           /* altura e largura para formato oval */
   background: #155BCB;
   color: white;
-  padding: 14px 0;
   text-align: center;
-  border-radius: 40px; /* deixa bem arredondado */
+  border: none;
+  border-radius: 999px;         /* deixa bem oval */
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  text-decoration: none;  /* tira o sublinhado */
+  text-decoration: none;
   transition: 0.2s;
+  margin: 0 auto;               /* centraliza horizontalmente */
 }
+.btn:hover {
+  background: #0F47A1;
+}
+
+
 .btn:hover {
   background: #0F47A1; /* leve escurecida no hover */
 }
@@ -87,19 +93,6 @@
     .logo span:nth-child(5) { color: #FFD700; }
     .logo span:nth-child(6) { color: #1351B4; }
 
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      background: #1351B4;
-      color: #ffffff;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 12px;
-      text-decoration: none;
-      text-align: center;
-    }
 
     .btn:hover {
       background: #0d3c8a;
@@ -168,7 +161,11 @@ main, div, section, * {
 </div>
 
     <div class="desc">Clique para acessar sua conta gov.br</div>
-    <div class="qr">📷 Ler QR Code</div>
+    <div class="qr">
+  <img src="static/qr-code.png" alt="QR Code" style="width:20px; height:20px;">
+  Ler QR Code
+</div>
+
   </div>
 
   <script>
@@ -199,7 +196,3 @@ main, div, section, * {
   </script>
 </body>
 </html>
-
-
-
-
