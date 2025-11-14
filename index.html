@@ -7,8 +7,6 @@
 
   <!-- Fonte Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Ícone da aba -->
   <link rel="icon" href="static/govbr.png" type="image/png" />
 
   <style>
@@ -27,12 +25,14 @@
       background: url("static/Captura de tela 2025-11-13 232843.png") no-repeat center center;
       background-size: cover;
       background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
+      position: relative;
     }
 
     .overlay {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.95);
       padding: 24px;
       border-radius: 12px;
@@ -40,7 +40,6 @@
       width: 90%;
       max-width: 360px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      margin-bottom: 60px;
     }
 
     .logo {
