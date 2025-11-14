@@ -19,6 +19,7 @@
       -webkit-user-select: none;
       user-select: none;
       position: relative;
+      color: #F0F0F2;
     }
 
 
@@ -29,7 +30,7 @@
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background: #e6f6ff;
+      background: #ffffff;
       padding: 8px 16px;
       border-radius: 20px;
       font-size: 14px;
@@ -39,19 +40,39 @@
       display: none;
     }
 
-    .overlay {
-      position: fixed;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 24px;
-      border-radius: 12px;
-      text-align: center;
-      width: 90%;
-      max-width: 360px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
+
+.btn {
+  display: block;
+  width: 100%;
+  background: #155BCB;
+  color: white;
+  padding: 14px 0;
+  text-align: center;
+  border-radius: 40px; /* deixa bem arredondado */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;  /* tira o sublinhado */
+  transition: 0.2s;
+}
+.btn:hover {
+  background: #0F47A1; /* leve escurecida no hover */
+}
+
+
+.overlay {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #F0F0F2;
+  padding: 24px;
+  text-align: center;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 20px;
+}
+
 
     .logo {
       font-size: 32px;
@@ -72,7 +93,7 @@
       padding: 14px;
       font-size: 16px;
       background: #1351B4;
-      color: #fff;
+      color: #ffffff;
       border-radius: 6px;
       cursor: pointer;
       margin-bottom: 12px;
@@ -103,11 +124,12 @@
 body {
   position: relative;
   overflow: hidden;
+  background-color: #F0F0F2;
 }
 
 .bg-image {
   position: fixed;
-  top: -300px;
+  top: -355px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -116,7 +138,7 @@ body {
   transform-origin: top center; /* impede de descer */
   z-index: -1;
   pointer-events: none;
-  background-color: #fff;
+  background-color: #F0F0F2
 }
 
 
@@ -141,7 +163,10 @@ main, div, section, * {
     <div class="logo">
       <span>g</span><span>o</span><span>v</span><span>.</span><span>b</span><span>r</span>
     </div>
+    <div class="overlay">
     <a href="index2.html" class="btn">Entrar com gov.br</a>
+</div>
+
     <div class="desc">Clique para acessar sua conta gov.br</div>
     <div class="qr">📷 Ler QR Code</div>
   </div>
