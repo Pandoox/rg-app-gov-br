@@ -23,6 +23,22 @@
       overscroll-behavior: none;
     }
 
+    /* Loader */
+    #loader {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e6f6ff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #333;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      display: none; /* começa oculto */
+    }
+
     .topbar {
       background-color: #001F5C;
       color: #fff;
@@ -148,6 +164,9 @@
 </head>
 <body>
 
+  <!-- Loader -->
+  <div id="loader">🔄 Atualizando...</div>
+
   <div class="topbar">
     <span class="back-arrow" onclick="history.back()">←</span>
     <span class="title">ENTRAR COM GOV.BR</span>
@@ -195,5 +214,31 @@
       </div>
     </div>
   </div>
+
+  <script>
+    let startY = 0;
+    let isRefreshing = false;
+
+    document.addEventListener('touchstart', e => {
+      if (window.scrollY === 0) {
+        startY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      const endY = e.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+
+      if (deltaY > 80 && !isRefreshing && window.scrollY === 0) {
+        isRefreshing = true;
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
+
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+    }, { passive: true });
+  </script>
 </body>
 </html>
